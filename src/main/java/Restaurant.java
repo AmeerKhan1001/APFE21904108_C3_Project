@@ -49,6 +49,15 @@ public class Restaurant {
 
         menu.remove(itemToBeRemoved);
     }
+
+    public int displayOrderValue(List<String> items) {
+        int total = 0;
+        for(Item menuItem: menu) {
+            if(items.contains(menuItem.getName())) total += menuItem.getPrice();
+        }
+        return total;
+    }
+
     public void displayDetails(){
         System.out.println("Restaurant:"+ name + "\n"
                 +"Location:"+ location + "\n"

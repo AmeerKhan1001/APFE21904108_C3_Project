@@ -68,11 +68,11 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     @Test
-    public void given_item_names_should_return_correct_order_value() {
+    public void given_item_names_display_order_value_should_return_correct_order_value() {
         assertEquals(388,restaurant.displayOrderValue(itemNames));
     }
     @Test
-    public void given_no_item_names_should_return_0() {
+    public void given_no_item_names_display_order_value_should_return_0() {
         assertEquals(0,restaurant.displayOrderValue(new ArrayList<>()));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
