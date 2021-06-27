@@ -3,20 +3,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class RestaurantTest {
     static Restaurant restaurant;
+    static List<String> itemNames;
     //REFACTOR ALL THE REPEATED LINES OF CODE
     @BeforeAll
     public static void setup() {
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
+
         restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Dish 3", 269);
+        itemNames = new ArrayList<String>();
+        itemNames.add("Sweet corn soup");
+        itemNames.add("Dish 3");
     }
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
@@ -58,6 +66,14 @@ class RestaurantTest {
     public void removing_item_that_does_not_exist_should_throw_exception() {
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
+    }
+    @Test
+    public void given_item_names_should_return_correct_order_value() {
+        assertEquals(388,restaurant.displayOrderValue(itemNames));
+    }
+    @Test
+    public void given_no_item_names_should_return_0() {
+        assertEquals(0,restaurant.displayOrderValue(new ArrayList<>()));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
